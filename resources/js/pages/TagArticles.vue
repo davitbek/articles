@@ -1,5 +1,13 @@
 <template>
     <div>
+        <loading v-if="tagLoading"></loading>
+        <div v-else-if="tag">
+            <h1>{{ tag.name }}</h1>
+            <p>{{ tag.description }}</p>
+        </div>
+        <div v-else>
+            Invalid tag
+        </div>
         <loading v-if="articlesLoading"></loading>
         <div v-else>
             <div class="row">
@@ -34,6 +42,7 @@
 
 <script>
 import {ARTICLES} from "../store/articles/actions";
+import {TAG} from "../store/tags/actions";
 import {mapGetters} from 'vuex';
 import Loading from "../components/partials/Loading";
 import Like from "../components/partials/Like";
@@ -49,22 +58,31 @@ export default {
         Tags,
     },
     beforeMount() {
-        this.getArticles();
+        this.fetchData();
     },
     methods: {
+        fetchData() {
+            this.getTag();
+            this.getArticles();
+        },
         getArticles(page = 1) {
             this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5, tag:this.$route.params.slug});
+        },
+        getTag(page = 1) {
+            this.$store.dispatch(TAG, {slug:this.$route.params.slug});
         }
     },
     computed: {
         ...mapGetters([
             'articles',
             'articlesLoading',
+            'tag',
+            'tagLoading',
         ]),
     },
     watch: {
         '$route.params.slug' (){
-            this.getArticles();
+            this.fetchData();
         }
     }
 }

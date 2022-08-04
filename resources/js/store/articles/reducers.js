@@ -1,4 +1,4 @@
-import action from "../../store/action_new";
+import action from "../../store/action";
 import {
     ARTICLE,
     ARTICLE_LIKE,
