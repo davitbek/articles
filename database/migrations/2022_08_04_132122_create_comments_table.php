@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('article_id')->constrained()->onDelete('cascade');
             $table->string('ip');
-            $table->string('theme');
+            $table->string('theme', 100);
             $table->text('comment');
             $table->timestamps();
         });

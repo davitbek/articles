@@ -11,3 +11,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('articles', [ArticleController::class, 'index']);
 Route::get('articles/{slug}', [ArticleController::class, 'show']);
 Route::put('articles/{slug}/like', [ArticleController::class, 'like']);
+Route::get('articles/{slug}/comments', [ArticleController::class, 'comments']);
+Route::post('articles/{slug}/comments', [ArticleController::class, 'storeComments']);
