@@ -58,7 +58,7 @@ class ArticleController extends BaseController
     public function comments(Request $request, $slug)
     {
         $article = Article::select('id')->firstBySlug($slug);
-        $comments = $article->comments()->latest()->paginate($request->per_page);
+        $comments = $article->comments()->latest()->paginate(5);
         return CommentResource::collection($comments);
     }
 
