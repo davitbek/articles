@@ -5,9 +5,8 @@
             <div v-if="article">
                 <h1 class="mb-5">{{article.name}}</h1>
                 <div class="mb-5">
-                    <span class="glyphicon glyphicon-heart"></span>
-                    <i class="glyphicon glyphicon-eye-open"></i>
-                    <span>{{ article.views_count }}</span>
+                    <like :article="article"></like>
+                    <views :article="article"></views>
                 </div>
                 <div class="mb-5">
                     <span v-for="tag in article.tags" class="badge badge-secondary">
@@ -25,20 +24,22 @@
 
 <script>
 import {ARTICLE} from "../store/articles/actions";
-import {mapGetters, mapState} from 'vuex';
+import {mapGetters} from 'vuex';
 import Loading from "../components/partials/Loading";
+import Like from "../components/partials/Like";
+import Views from "../components/partials/Views";
 
 export default {
     name: "Articles",
     components: {
-        Loading
+        Loading,
+        Like,
+        Views,
     },
     beforeMount() {
         this.$store.dispatch(ARTICLE, {slug: this.$route.params.slug});
     },
     methods: {
-        getArticles(page = 1) {
-        }
     },
     computed: {
         ...mapGetters([
