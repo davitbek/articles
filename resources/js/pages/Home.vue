@@ -18,8 +18,8 @@
                     </div>
                 </div>
             </div>
-            <Pagination :data="articles" @pagination-change-page="getArticles" />
         </div>
+        <Pagination :data="articles" @pagination-change-page="getArticles" />
     </div>
 </template>
 

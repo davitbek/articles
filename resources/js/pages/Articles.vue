@@ -29,8 +29,8 @@
 
                 </div>
             </div>
-            <Pagination :data="articles" @pagination-change-page="getArticles" />
         </div>
+        <Pagination :data="articles" @pagination-change-page="getArticles" />
     </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         getArticles(page = 1) {
-            this.$store.dispatch(ARTICLES, {page, with_tags:true});
+            this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5});
         }
     },
     computed: {

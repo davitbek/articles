@@ -17,6 +17,13 @@ export default {
         if (options.single) {
             defaultState.data = {};
         }
+        if (options.paginate) {
+            defaultState.data = {
+                data: [],
+                links: {},
+                meta: {},
+            };
+        }
 
         let getters = {};
         let getterName = options.stateName.replace('Request', '');
@@ -71,6 +78,9 @@ export default {
                     }
                 }
 
+                if (options.paginate) {
+                    defaultState.data.meta = context.state[options.stateName].data.meta;
+                }
                 context.state[options.stateName] = {...defaultState, ...{params: params, loading: true, is_called:true}}
 
                 if (options.processAction && typeof options.processAction === 'function') {
@@ -97,11 +107,7 @@ export default {
                     }
                     ApiService[method](endPoint, bindParams)
                         .then(response => {
-                            if (options.multiple) {
-                                context.commit(options.action + '_SUCCESS', {response: response.data, params: params});
-                            } else {
-                                context.commit(options.action + '_SUCCESS', response.data);
-                            }
+                            context.commit(options.action + '_SUCCESS', response.data);
                             if (options.commit) {
                                 for(const commitSuffix in options.commit) {
                                     context.commit(options.commit[commitSuffix] + '_' + commitSuffix.toUpperCase(), {data: response.data, _params: urlParams});

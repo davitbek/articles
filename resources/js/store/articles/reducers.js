@@ -8,6 +8,7 @@ const actionsProcessed = action.processMultiple([
         stateName: 'getArticlesRequest',
         action: ARTICLES,
         endPoint: 'articles',
+        paginate:true,
     },
     {
         stateName: 'getArticleRequest',
