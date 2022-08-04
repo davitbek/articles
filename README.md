@@ -1,9 +1,15 @@
 
-For migrate db and seeder
+For migrate db
 
 ```
-    php artisan migrate --seed
+    php artisan migrate
 ```
+Fill database
+
+```
+    php artisan db:seed
+```
+
 If any error happen then run 
 
 ```

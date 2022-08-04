@@ -79,7 +79,13 @@ export default {
                 }
 
                 if (options.paginate) {
-                    defaultState.data.meta = context.state[options.stateName].data.meta;
+                    let oldParams = Object.keys(params).sort().join('');
+                    let newParams = Object.keys(context.state[options.stateName].params).sort().join('');
+                    if (oldParams === newParams) {
+                        defaultState.data.meta = context.state[options.stateName].data.meta;
+                    } else {
+                        defaultState.data.meta = {};
+                    }
                 }
                 context.state[options.stateName] = {...defaultState, ...{params: params, loading: true, is_called:true}}
 
