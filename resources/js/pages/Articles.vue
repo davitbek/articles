@@ -3,6 +3,7 @@
         <loading v-if="articlesLoading"></loading>
         <div v-else>
             <div class="row">
+                <div class="col-12 mb-5" v-if="!articles.data.length">Articles not found</div>
                 <div class="col-12 mb-5" v-for="article in articles.data">
                     <div class="row">
                         <div class="col-3">
