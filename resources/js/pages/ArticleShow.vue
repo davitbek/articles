@@ -35,6 +35,9 @@
                         <h2>{{ comment.theme }}</h2>
                         <p>{{ comment.comment }}</p>
                     </div>
+                    <i>
+                        TODO in next developmenmt add load more options for keep existing comments and load remians comments
+                    </i>
                 </div>
                 <Pagination :data="articleComments" @pagination-change-page="getArticleComments" />
             </div>
