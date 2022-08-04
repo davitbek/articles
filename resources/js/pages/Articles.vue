@@ -17,11 +17,10 @@
                             <div>{{ article.text}}</div>
                             <div class="row">
                                 <div class="col-6">
-                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                    <span>{{ article.views_count }}</span>
+                                   <views :article="article"></views>
                                 </div>
                                 <div class="col-6 text-right">
-                                    <span class="glyphicon glyphicon-heart"></span>
+                                   <like :article="article"></like>
                                 </div>
                             </div>
 
@@ -39,11 +38,15 @@
 import {ARTICLES} from "../store/articles/actions";
 import {mapGetters, mapState} from 'vuex';
 import Loading from "../components/partials/Loading";
+import Like from "../components/partials/Like";
+import Views from "../components/partials/Views";
 
 export default {
     name: "Articles",
     components: {
-        Loading
+        Loading,
+        Like,
+        Views,
     },
     beforeMount() {
         this.getArticles();
