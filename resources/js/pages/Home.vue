@@ -8,11 +8,11 @@
                 <div>{{ article.text}}</div>
                 <div class="row">
                     <div class="col-6">
+                        <i class="glyphicon glyphicon-eye-open"></i>
                         <span>{{ article.views_count }}</span>
-
                     </div>
-                    <div class="col-6">
-
+                    <div class="col-6 text-right">
+                        <span class="glyphicon glyphicon-heart"></span>
                     </div>
                 </div>
             </div>
