@@ -39,6 +39,9 @@ actionsProcessed.mutations = {
         }
         state.getArticlesRequest.data.data = [...list];
         state.getArticlesRequest = {...state.getArticlesRequest};
+        if (state.getArticleRequest.data.slug && data[state.getArticleRequest.data.slug]) {
+            state.getArticleRequest.data = {... state.getArticleRequest.data, ...data[state.getArticleRequest.data.slug]}
+        }
     },
 }
 

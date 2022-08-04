@@ -46,7 +46,6 @@ const ApiService = {
      */
     apiUrl()
     {
-        console.log(process.env.MIX_API_URL)
         return process.env.MIX_API_URL;
     },
 
