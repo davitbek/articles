@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('views_count')->default(0);
             $table->unsignedBigInteger('likes_count')->default(0);
             $table->string('name', 100);
-            $table->string('slug', 100);
+            $table->string('slug', 100)->unique();
             $table->string('image_path', 255);
             $table->longText('text');
             $table->timestamps();
