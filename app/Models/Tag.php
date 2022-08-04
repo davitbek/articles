@@ -12,6 +12,7 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'slug',
     ];
 
@@ -21,5 +22,10 @@ class Tag extends Model
         self::creating(function (Tag $tag) {
             $tag->slug = $tag->slug ?? Str::slug($tag->name);
         });
+    }
+
+    public function scopeFirstBySlug($q, $slug)
+    {
+        return $q->where('slug', $slug)->firstOrFail();
     }
 }

@@ -21,6 +21,7 @@ class TagFactory extends Factory
         $seconds = now()->diffInSeconds($firstArticleCreatedAt) + random_int(1, 10000);
         return [
             'name' => $this->faker->name,
+            'description' => $this->faker->text(random_int(50, 100)),
             'created_at' => now()->subSeconds($seconds),
             'updated_at' => now()->subSeconds(random_int(0, $seconds))
         ];

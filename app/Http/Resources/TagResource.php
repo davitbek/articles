@@ -17,6 +17,7 @@ class TagResource extends JsonResource
         return [
             'name' => $this->name,
             'slug' => $this->slug,
+            'description' => $this->when(null !== $this->description, $this->description),
         ];
     }
 }

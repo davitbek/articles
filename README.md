@@ -32,6 +32,7 @@ Every time when need run seeder before it make sure run
 /api/articles?tag={tag_slug}&with_tags=true // will return paginated articles with tags which has tage with slug={tag_slug} 
 /api/articles/{slug}                        // will return article with slug={slug}(and every time will increase views_count) if not found then laravel default not found response
 /api/articles/{slug}/comments               // will return article comments with pagination based slug={slug} if not found article then laravel default not found response
+/api/tags/{slug}                            // will return tag with slug={slug} if not found then laravel default not found response
 ```
 #put methods
 ```
