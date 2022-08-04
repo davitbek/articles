@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <router-link :to="{name:'home'}">
@@ -19,9 +19,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <router-view ></router-view>
-        </div>
+        <router-view ></router-view>
     </div>
 </template>
 

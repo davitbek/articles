@@ -32,7 +32,7 @@ export default {
         Loading
     },
     beforeMount() {
-        this.$store.dispatch(ARTICLES);
+        this.getArticles();
     },
     methods: {
        getArticles(page = 1) {

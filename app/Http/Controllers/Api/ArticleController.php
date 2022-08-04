@@ -13,17 +13,19 @@ class ArticleController extends BaseController
 {
     public function index(Request $request)
     {
-        $length = 100;
         $articles = Article::select('id', 'name', 'slug', 'views_count', 'image_path')
-            ->addSelect(DB::raw(sprintf('CONCAT(SUBSTRING(`text`, 1, %s), IF(CHAR_LENGTH(`text`) < %s, "", "...")) as text', $length, $length)))
-            ->when($request->with_tags, function ($q) {
-                $q->with([
-                    'tags' => function ($q) {
-                        $q->select('tags.id', 'tags.name', 'tags.slug');
-                    }
-                ]);
-            })
-            ->when($request->tag, function ($q) use ($request) {
+            ->when($request->with_tags,
+                function ($q) {
+                    $q->addSelect('text')->with([
+                        'tags' => function ($q) {
+                            $q->select('tags.id', 'tags.name', 'tags.slug');
+                        }
+                    ]);
+                }, function ($q) {
+                    $length = 100;
+                    $q->addSelect(DB::raw(sprintf('CONCAT(SUBSTRING(`text`, 1, %s), IF(CHAR_LENGTH(`text`) < %s, "", "...")) as text', $length, $length)));
+                }
+            )->when($request->tag, function ($q) use ($request) {
                 $q->whereHas('tags', function ($q) use ($request) {
                     $q->where('tags.slug', $request->tag);
                 });

@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
         return [
             'name' => $this->faker->words(random_int(1, 5), true),
             'image_path' => $this->faker->imageUrl(),
-            'text' => $this->faker->text(random_int(50, 200)),
+            'text' => $this->faker->text(random_int(50, 5000)),
             'created_at' => now()->subSeconds($seconds),
             'updated_at' => now()->subSeconds(random_int(0, $seconds))
         ];
