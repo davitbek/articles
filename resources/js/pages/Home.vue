@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+        <Pagination :data="articles" @pagination-change-page="getArticles" />
     </div>
 </template>
 
@@ -32,7 +33,11 @@ export default {
     },
     beforeMount() {
         this.$store.dispatch(ARTICLES);
-
+    },
+    methods: {
+       getArticles(page = 1) {
+           this.$store.dispatch(ARTICLES, {page});
+       }
     },
     computed: {
         ...mapGetters([

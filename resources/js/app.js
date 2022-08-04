@@ -1,7 +1,9 @@
 require('./bootstrap');
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import LaravelVuePagination from 'laravel-vue-pagination';
 
 window.Vue = require('vue').default;
+Vue.component('Pagination', LaravelVuePagination);
 
 import Vue from 'vue';
 import Main from './Main';
