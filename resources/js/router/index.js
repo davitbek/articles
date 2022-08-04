@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from "../pages/Home";
 import Articles from "../pages/Articles";
+import TagArticles from "../pages/TagArticles";
 import ArticleShow from "../pages/ArticleShow";
 
 Vue.use(Router);
@@ -18,6 +19,11 @@ const router = new Router({
             path: '/articles',
             name:'articles',
             component: Articles
+        },
+        {
+            path: '/articles/tag/:tag',
+            name:'articles.tag',
+            component: TagArticles
         },
         {
             path: '/articles/:slug',

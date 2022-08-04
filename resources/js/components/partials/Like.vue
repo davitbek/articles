@@ -1,8 +1,8 @@
 <template>
-    <div @click.stop="articleLike">
-        <span class="glyphicon glyphicon-heart"></span>
+    <span @click.stop="articleLike">
+        <i class="glyphicon glyphicon-heart"></i>
         <span>{{ article.likes_count }}</span>
-    </div>
+    </span>
 </template>
 
 <script>

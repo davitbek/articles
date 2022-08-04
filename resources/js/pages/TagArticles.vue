@@ -41,7 +41,7 @@ import Views from "../components/partials/Views";
 import Tags from "../components/partials/Tags";
 
 export default {
-    name: "Articles",
+    name: "TagArticles",
     components: {
         Loading,
         Like,
@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         getArticles(page = 1) {
-            this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5});
+            this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5, tag:this.$route.params.tag});
         }
     },
     computed: {
@@ -61,6 +61,11 @@ export default {
             'articles',
             'articlesLoading',
         ]),
+    },
+    watch: {
+        '$route.params.tag' (){
+            this.getArticles();
+        }
     }
 }
 </script>
