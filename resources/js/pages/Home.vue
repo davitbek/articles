@@ -2,7 +2,7 @@
     <div>
         <loading v-if="articlesLoading"></loading>
         <div class="row">
-            <div class="col-4" v-for="article in articles.data">
+            <div class="col-4" v-for="article in articles.data" @click="$router.push({name:'articles.show', params:{'slug': article.slug}})">
                 <img :src="article.image_path" alt="" style="width: inherit !important;">
                 <h1>{{article.name}}</h1>
                 <div>{{ article.text}}</div>

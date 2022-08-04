@@ -1,5 +1,6 @@
 import action from "../../store/action_new";
 import {
+    ARTICLE,
     ARTICLES,
 } from "./actions";
 const actionsProcessed = action.processMultiple([
@@ -7,6 +8,11 @@ const actionsProcessed = action.processMultiple([
         stateName: 'getArticlesRequest',
         action: ARTICLES,
         endPoint: 'articles',
+    },
+    {
+        stateName: 'getArticleRequest',
+        action: ARTICLE,
+        endPoint: 'articles/{slug}',
     },
 ]);
 
