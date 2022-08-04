@@ -21,7 +21,7 @@ const router = new Router({
             component: Articles
         },
         {
-            path: '/articles/tag/:tag',
+            path: '/articles/tags/:slug',
             name:'articles.tag',
             component: TagArticles
         },

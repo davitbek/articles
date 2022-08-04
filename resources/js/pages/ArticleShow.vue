@@ -9,9 +9,7 @@
                     <views :article="article"></views>
                 </div>
                 <div class="mb-5">
-                    <span v-for="tag in article.tags" class="badge badge-secondary">
-                        {{ tag.name}}
-                    </span>
+                    <tags :article="article"></tags>
                 </div>
                 <div>{{ article.text}}</div>
             </div>
@@ -28,6 +26,7 @@ import {mapGetters} from 'vuex';
 import Loading from "../components/partials/Loading";
 import Like from "../components/partials/Like";
 import Views from "../components/partials/Views";
+import Tags from "../components/partials/Tags";
 
 export default {
     name: "Articles",
@@ -35,6 +34,7 @@ export default {
         Loading,
         Like,
         Views,
+        Tags,
     },
     beforeMount() {
         this.$store.dispatch(ARTICLE, {slug: this.$route.params.slug});

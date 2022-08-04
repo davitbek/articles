@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         getArticles(page = 1) {
-            this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5, tag:this.$route.params.tag});
+            this.$store.dispatch(ARTICLES, {page, with_tags:true, per_page:5, tag:this.$route.params.slug});
         }
     },
     computed: {
@@ -63,7 +63,7 @@ export default {
         ]),
     },
     watch: {
-        '$route.params.tag' (){
+        '$route.params.slug' (){
             this.getArticles();
         }
     }

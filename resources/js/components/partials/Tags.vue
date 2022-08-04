@@ -1,6 +1,6 @@
 <template>
     <div>
-         <span v-for="tag in article.tags" class="badge badge-secondary" @click="$router.push({name:'articles.tag', params:{'tag': tag.slug}})">
+         <span v-for="tag in article.tags" class="badge badge-secondary mr-2" @click="goArticlesTagPage(tag)">
             {{ tag.name}}
         </span>
     </div>
@@ -11,7 +11,14 @@ export default {
     name: "Tags",
     props:[
         'article'
-    ]
+    ],
+    methods: {
+        goArticlesTagPage(tag) {
+            if (this.$route.name !== 'articles.tag' || this.$route.params.slug !== tag.slug) {
+               this.$router.push({name:'articles.tag', params:{'slug': tag.slug}})
+            }
+        }
+    }
 }
 </script>
 
