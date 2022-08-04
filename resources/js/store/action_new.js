@@ -46,6 +46,9 @@ export default {
             ...{
                 [getterName + 'IsCalled'](state, getters) {
                     return state[options.stateName].is_called;
+                },
+                [getterName + 'Loading'](state, getters) {
+                    return state[options.stateName].loading;
                 }
             }
         };
@@ -140,9 +143,8 @@ export default {
                 if (options.mutations && typeof options.mutations.errorCallback === 'function') {
                     state[options.stateName] = options.mutations.errorCallback(state, errors, defaultState);
                 } else {
-                    state[options.stateName] = {...state[options.stateName], ...{data:defaultState.data, errors: errors, loading:false}};
+                    state[options.stateName] = {...state[options.stateName], ...{data:null, errors: errors, loading:false}};
                 }
-                console.log(state);
             },
         };
 

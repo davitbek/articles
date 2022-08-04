@@ -1,21 +1,24 @@
 <template>
     <div>
-        <div v-if="article">
-            <h1 class="mb-5">{{article.name}}</h1>
-            <div class="mb-5">
-                <span class="glyphicon glyphicon-heart"></span>
-                <i class="glyphicon glyphicon-eye-open"></i>
-                <span>{{ article.views_count }}</span>
-            </div>
-            <div class="mb-5">
-                <span v-for="tag in article.tags" class="badge badge-secondary">
-                    {{ tag.name}}
-                </span>
-            </div>
-            <div>{{ article.text}}</div>
-        </div>
+        <loading v-if="articleLoading"></loading>
         <div v-else>
-            Article not found
+            <div v-if="article">
+                <h1 class="mb-5">{{article.name}}</h1>
+                <div class="mb-5">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    <span>{{ article.views_count }}</span>
+                </div>
+                <div class="mb-5">
+                    <span v-for="tag in article.tags" class="badge badge-secondary">
+                        {{ tag.name}}
+                    </span>
+                </div>
+                <div>{{ article.text}}</div>
+            </div>
+            <div v-else>
+                Article not found
+            </div>
         </div>
     </div>
 </template>

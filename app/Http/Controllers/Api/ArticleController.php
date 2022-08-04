@@ -37,7 +37,8 @@ class ArticleController extends BaseController
 
     public function show($slug)
     {
-        $article = Article::select('id', 'name', 'slug', 'text', 'views_count', 'likes_count', 'image_path')
+        sleep(5);
+        $article = Article::select('id', 'name', 'slug', 'text', 'views_count', 'likes_count')
             ->with([
                 'tags' => function ($q) {
                     $q->select('tags.id', 'tags.name', 'tags.slug');
