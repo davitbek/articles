@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Article;
-use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,7 +15,7 @@ class TagFactory extends Factory
      */
     public function definition()
     {
-        $firstArticleCreatedAt = Cache::remember('first_article_creation_time', 120, function () {
+        $firstArticleCreatedAt = Cache::remember('first_article_creation_time', 60, function () {
             return Article::min('created_at');
         });
         $seconds = now()->diffInSeconds($firstArticleCreatedAt) + random_int(1, 10000);

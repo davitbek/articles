@@ -8,7 +8,6 @@ class ArticleFactory extends Factory
 {
     protected $seconds = 365 * 24 * 60;
 
-
     /**
      * Define the model's default state.
      *
