@@ -1,34 +1,36 @@
 <template>
     <div>
         <loading v-if="articlesLoading"></loading>
-        <div class="row">
-            <div class="col-12 mb-5" v-for="article in articles.data">
-                <div class="row">
-                    <div class="col-3">
-                        <span v-for="tag in article.tags" class="badge badge-secondary">
-                            {{ tag.name}}
-                        </span>
-                    </div>
-                    <div class="col-9" @click="$router.push({name:'articles.show', params:{'slug': article.slug}})">
-                        <img :src="article.image_path" alt="" style="width: inherit !important;">
-                        <h1>{{article.name}}</h1>
-                        <div>{{ article.text}}</div>
-                        <div class="row">
-                            <div class="col-6">
-                                <i class="glyphicon glyphicon-eye-open"></i>
-                                <span>{{ article.views_count }}</span>
-                            </div>
-                            <div class="col-6 text-right">
-                                <span class="glyphicon glyphicon-heart"></span>
-                            </div>
+        <div v-else>
+            <div class="row">
+                <div class="col-12 mb-5" v-for="article in articles.data">
+                    <div class="row">
+                        <div class="col-3">
+                            <span v-for="tag in article.tags" class="badge badge-secondary">
+                                {{ tag.name}}
+                            </span>
                         </div>
+                        <div class="col-9" @click="$router.push({name:'articles.show', params:{'slug': article.slug}})">
+                            <img :src="article.image_path" alt="" style="width: inherit !important;">
+                            <h1>{{article.name}}</h1>
+                            <div>{{ article.text}}</div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                    <span>{{ article.views_count }}</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
+            <Pagination :data="articles" @pagination-change-page="getArticles" />
         </div>
-        <Pagination :data="articles" @pagination-change-page="getArticles" />
     </div>
 </template>
 

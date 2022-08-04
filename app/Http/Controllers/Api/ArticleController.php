@@ -13,6 +13,7 @@ class ArticleController extends BaseController
 {
     public function index(Request $request)
     {
+        sleep(1);
         $articles = Article::select('id', 'name', 'slug', 'views_count', 'image_path')
             ->when($request->with_tags,
                 function ($q) {
@@ -37,7 +38,7 @@ class ArticleController extends BaseController
 
     public function show($slug)
     {
-        sleep(5);
+        sleep(1);
         $article = Article::select('id', 'name', 'slug', 'text', 'views_count', 'likes_count')
             ->with([
                 'tags' => function ($q) {
