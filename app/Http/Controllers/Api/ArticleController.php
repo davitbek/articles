@@ -7,12 +7,15 @@ use App\Http\Resources\CommentResource;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends BaseController
 {
     public function index(Request $request)
     {
-        $articles = Article::select('id', 'name', 'slug', 'text', 'views_count', 'image_path')
+        $length = 100;
+        $articles = Article::select('id', 'name', 'slug', 'views_count', 'image_path')
+            ->addSelect(DB::raw(sprintf('CONCAT(SUBSTRING(`text`, 1, %s), IF(CHAR_LENGTH(`text`) < %s, "", "...")) as text', $length, $length)))
             ->when($request->with_tags, function ($q) {
                 $q->with([
                     'tags' => function ($q) {
