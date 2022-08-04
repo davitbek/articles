@@ -129,19 +129,8 @@ export default {
                 if (options.mutations && typeof options.mutations.successCallback === 'function') {
                     state[options.stateName] = options.mutations.successCallback(actionState, data, state, defaultState);
                 } else {
-                    if (options.multiple) {
-                        let multipleData = actionState.multipleData;
-                        let id = data.params.id;
-                        multipleData[id] = {
-                            ...multipleData[id],
-                            ...data.response,
-                            loading: false,
-                            moreLoading: false,
-                        };
-                        state[options.stateName] = {...actionState, ...{multipleData: multipleData}};
-                    } else if (options.loadMore) {
-                        data.data = state[options.stateName].data.concat(data.data);
-                        state[options.stateName] = {...actionState, ...data, ...{errors: defaultState.errors, loading:false, moreLoading: false}};
+                    if (options.single) {
+                        state[options.stateName] = {...actionState, ...{data: data.data, errors: defaultState.errors, loading:false}};
                     } else {
                         state[options.stateName] = {...actionState, ...{data: data, errors: defaultState.errors, loading:false}};
                     }
@@ -153,6 +142,7 @@ export default {
                 } else {
                     state[options.stateName] = {...state[options.stateName], ...{data:defaultState.data, errors: errors, loading:false}};
                 }
+                console.log(state);
             },
         };
 

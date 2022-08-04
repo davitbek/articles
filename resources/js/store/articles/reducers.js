@@ -12,6 +12,7 @@ const actionsProcessed = action.processMultiple([
     {
         stateName: 'getArticleRequest',
         action: ARTICLE,
+        single:true,
         endPoint: 'articles/{slug}',
     },
 ]);
