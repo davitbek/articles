@@ -1,3 +1,12 @@
+Before starting project first fill in .env file
+```
+APP_URL=http://localhost
+MIX_API_URL={{APP_URL}}/api
+DB_DATABASE=rentuu
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
 
 For migrate db
 
